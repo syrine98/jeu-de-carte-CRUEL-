@@ -14,7 +14,7 @@ jeu::jeu()
     verifPermute=0;
 }
 jeu::~jeu(){}
-void jeu::deplacer(int a ,int b) // a representera le n° de la carte à deplacer, b le n° de tas ou on va placer la carte
+void jeu::deplacer(int a ,int b) // a representera le nÂ° de la carte Ã  deplacer, b le nÂ° de tas ou on va placer la carte
 {
     verifAction=0;
   int c=0;
@@ -25,7 +25,7 @@ void jeu::deplacer(int a ,int b) // a representera le n° de la carte à deplacer,
    }
    a=a-5;
 
-  if (b<5) // lorsque le déplacement va s'effectuer de la zone 2 vars la zone 1
+  if (b<5) // lorsque le dÃ©placement va s'effectuer de la zone 2 vars la zone 1
   {
       b=b-1;
 
@@ -75,7 +75,7 @@ if (b<10&&b>4)
         }
         if(verifAction==0)
         {
-            cout<<"WARNING: incorrect move"<<endl;
+            cout<<"WARNING: this is an incorrect move"<<endl;
         }
 
 }
@@ -215,7 +215,7 @@ void jeu::distribuer(std::vector<carte> tableau)
 
    do // kenet while mn ghir do
    {
-       position=rand()%tableau.size(); // générer une position aléatoire dans le tableau
+       position=rand()%tableau.size(); // gÃ©nÃ©rer une position alÃ©atoire dans le tableau
        zone2[k][j].t.push(tableau[position]); //ajouter la carte se trouvant dans cette position aux tas de la zone 2
        tableau.erase(tableau.begin()+position); // supprimer cette carte du tableau
        i=i+1;
@@ -256,8 +256,8 @@ void jeu::permuterJeu()
 }
 bool jeu::estBloque()
 {
-     bool test1= true ; // test1 pour vérifier s'il ya encore des déplacements possibles de la zone2 vers la zone1
-    bool test2=true ; // test2 pour vérifier s'il ya encore des déplacements possibles au sein de la zone2
+     bool test1= true ; // test1 pour vÃ©rifier s'il ya encore des dÃ©placements possibles de la zone2 vers la zone1
+    bool test2=true ; // test2 pour vÃ©rifier s'il ya encore des dÃ©placements possibles au sein de la zone2
     for (int c=0;c<4;c++)
     {
         for (int i=0;i<2;i++)
