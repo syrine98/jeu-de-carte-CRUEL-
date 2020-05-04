@@ -49,7 +49,7 @@ if (b>10)
           b=b-11;
 
           carte C=zone2[c][a].t.top();
-           if (zone2[1][b].t.top().comparerCarte(zone2[c][a].t.top()))
+           if (zone2[c][a].t.top().comparerCarte(zone2[1][b].t.top()))
         {
 
           zone2[1][b].t.push(zone2[c][a].t.top());
@@ -63,7 +63,7 @@ if (b<10&&b>4)
           b=b-5;
           cout<<"im on"<<endl;
           carte C=zone2[c][a].t.top();
-          if (zone2[0][b].t.top().comparerCarte(zone2[c][a].t.top()))
+          if (zone2[c][a].t.top().comparerCarte(zone2[0][b].t.top()))
         {
           cout<<"im in"<<endl;
           zone2[0][b].t.push(zone2[c][a].t.top());
