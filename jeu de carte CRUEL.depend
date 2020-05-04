@@ -1,0 +1,48 @@
+# depslib dependency file v1.0
+1588155155 source:c:\users\sirine.sirine-pc\desktop\projet c ++\jeu de carte cruel\main.cpp
+	<iostream>
+	"carte.h"
+	"tas.h"
+	"jeu.h"
+	<string>
+	<vector>
+	<ctime>
+	<cstdlib>
+
+1588152865 c:\users\sirine.sirine-pc\desktop\projet c ++\jeu de carte cruel\include\carte.h
+	<string>
+
+1588155846 source:c:\users\sirine.sirine-pc\desktop\projet c ++\jeu de carte cruel\src\carte.cpp
+	"carte.h"
+	<string>
+	<iostream>
+
+1588152861 source:c:\users\sirine.sirine-pc\desktop\projet c ++\jeu de carte cruel\src\tas.cpp
+	"tas.h"
+	<string>
+	<stack>
+	"carte.h"
+
+1588087369 c:\users\sirine.sirine-pc\desktop\projet c ++\jeu de carte cruel\include\tas.h
+	<string>
+	<stack>
+	"carte.h"
+
+1588375294 source:c:\users\sirine.sirine-pc\desktop\projet c ++\jeu de carte cruel\src\jeu.cpp
+	"jeu.h"
+	<string>
+	<vector>
+	"carte.h"
+	"tas.h"
+	<ctime>
+	<cstdlib>
+	<iostream>
+
+1588153007 c:\users\sirine.sirine-pc\desktop\projet c ++\jeu de carte cruel\include\jeu.h
+	<string>
+	"carte.h"
+	"tas.h"
+	<vector>
+	<ctime>
+	<cstdlib>
+
