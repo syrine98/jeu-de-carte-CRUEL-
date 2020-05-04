@@ -213,7 +213,7 @@ void jeu::distribuer(std::vector<carte> tableau)
 
    int i(0),j(0),k(0),position;
 
-   do // kenet while mn ghir do
+   while (tableau.size()!=0)
    {
        position=rand()%tableau.size(); // générer une position aléatoire dans le tableau
        zone2[k][j].t.push(tableau[position]); //ajouter la carte se trouvant dans cette position aux tas de la zone 2
@@ -235,7 +235,7 @@ void jeu::distribuer(std::vector<carte> tableau)
 
 
    }
-   while (tableau.size()!=0) ;
+  
 
 
 }
