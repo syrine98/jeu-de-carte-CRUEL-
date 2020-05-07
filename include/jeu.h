@@ -11,9 +11,9 @@
 class jeu
 {
     public:
-        jeu();
+       jeu();
         void deplacer(int a,int b);
-        void distribuer( std::vector<carte> t);
+        void distribuer( std::vector<carte> t,int k);
         void afficherZone1();
         void afficherZone2();
         bool estBloque();
@@ -22,13 +22,16 @@ class jeu
         int  getVerifP();
         int  getVerifA();
         ~jeu();
+        int  getScore();
+        void ajoutScore(long int c);
 
     private:
 
         tas zone1[4];
         tas zone2[2][6];
-        int verifPermute; // pour vérifier si la permutation a eu lieu ou non
-        int verifAction; // pour vérifier si l'action demandée est effectuée ou pas
+        int verifPermute; // pour vÃ©rifier si la permutation a eu lieu ou non
+        int verifAction; // pour vÃ©rifier si l'action demandÃ©e est effectuÃ©e ou pas
+        int score ;
 
 
 
