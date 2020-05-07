@@ -10,11 +10,14 @@
 using namespace std;
 jeu::jeu()
 {
+    //zone1 doit etre initialement vide
+    // zone2 doit etre initiaisé aléatoirement
     verifAction=0;
     verifPermute=0;
+    score=0;
 }
 jeu::~jeu(){}
-void jeu::deplacer(int a ,int b) // a representera le n° de la carte à deplacer, b le n° de tas ou on va placer la carte
+void jeu::deplacer(int a ,int b)
 {
     verifAction=0;
   int c=0;
@@ -25,10 +28,10 @@ void jeu::deplacer(int a ,int b) // a representera le n° de la carte à deplace
    }
    a=a-5;
 
-  if (b<5) // lorsque le déplacement va s'effectuer de la zone 2 vars la zone 1
+  if (b<5)
   {
-      b=b-1;
 
+      b=b-1;
 
       carte C= zone2[c][a].t.top();
        if (zone1[b].t.top().comparerCarte(zone2[c][a].t.top()))
@@ -38,12 +41,13 @@ void jeu::deplacer(int a ,int b) // a representera le n° de la carte à deplace
       zone2[c][a].t.pop();
       verifPermute=0;
       verifAction=1;
+      score+=100;
 
       }
 
   }
 
-// deplacements dans la zone 2
+
 if (b>10)
       {
           b=b-11;
@@ -56,35 +60,43 @@ if (b>10)
           zone2[c][a].t.pop();
           verifPermute=0;
           verifAction=1;
+          score+=100;
         }
       }
-if (b<10&&b>4)
+if (b<11&&b>4)
         {
           b=b-5;
-          cout<<"im on"<<endl;
+
           carte C=zone2[c][a].t.top();
           if (zone2[c][a].t.top().comparerCarte(zone2[0][b].t.top()))
         {
-          cout<<"im in"<<endl;
+
           zone2[0][b].t.push(zone2[c][a].t.top());
           zone2[c][a].t.pop();
           verifPermute=0;
           verifAction=1;
+          score+=100;
         }
 
         }
-        if(verifAction==0)
-        {
-            cout<<"WARNING: this is an incorrect move"<<endl;
-        }
+if (verifAction==0)
+   {
+       cout<<"WARNING:Bad move"<<endl;
+       cout<<"this move is not allowed"<<endl;
+   }
 
-}
 
+
+
+
+
+
+} // on aura besoin à une seule méthode deplacer
 
 void jeu::afficherZone1()
 {
 
-        cout<<"  ------------------------------------------------------------------- "<<endl;
+        cout<<"  ------------------------------------------------------------------------ "<<endl;
         cout<<"|";
     for(int i=0;i<4;i++)
     {
@@ -111,12 +123,19 @@ void jeu::afficherZone1()
         zone1[i].t.top().afficher();
         cout<<"    ";
         }
-          if ((x==4)||(x==5))
+          if (x==5)
 
         {
         cout<<i+1<<")";
         zone1[i].t.top().afficher();
         cout<<"  ";
+        }
+        if (x==4)
+
+        {
+        cout<<i+1<<")";
+        zone1[i].t.top().afficher();
+        cout<<"   ";
         }
     }
     cout<<"  "<<endl;
@@ -128,8 +147,11 @@ void jeu::afficherZone2()
 
     for (int j=0; j<6; j++)
     {
-        int x=zone2[0][j].t.top().getRang().size();
-        if (x==1)
+
+        if (!(zone2[0][j].t.empty()))
+        {
+         int x=zone2[0][j].t.top().getRang().size();
+         if (x==1)
 
         {
         cout<<j+5<<")";
@@ -151,21 +173,32 @@ void jeu::afficherZone2()
         zone2[0][j].t.top().afficher();
         cout<<"    ";
         }
-          if ((x==4)||(x==5))
+          if (x==5)
 
         {
         cout<<j+5<<")";
         zone2[0][j].t.top().afficher();
         cout<<"  ";
         }
+         if (x==4)
+
+        {
+        cout<<j+5<<")";
+        zone2[0][j].t.top().afficher();
+        cout<<"   ";
+        }
     }
+}
     cout<<" "<<endl<<"|";
 
     for (int j=0; j<6; j++)
     {
 
-        int x=zone2[1][j].t.top().getRang().size();
-        if (x==1)
+
+        if (!(zone2[1][j].t.empty()))
+        {
+         int x=zone2[1][j].t.top().getRang().size();
+         if (x==1)
 
         {
         cout<<j+11<<")";
@@ -187,39 +220,46 @@ void jeu::afficherZone2()
         zone2[1][j].t.top().afficher();
         cout<<"   ";
         }
-          if ((x==4)||(x==5))
+          if (x==5)
 
         {
         cout<<j+11<<")";
         zone2[1][j].t.top().afficher();
         cout<<" ";
         }
+        if (x==4)
 
+        {
+        cout<<j+11<<")";
+        zone2[1][j].t.top().afficher();
+        cout<<"  ";
+        }
 
     }
+    }
     cout<<"  "<<endl;
-    cout<<"  -------------------------------------------------------------------  "<<endl;
+    cout<<"  ------------------------------------------------------------------------  "<<endl;
 
 }
 
 
-void jeu::distribuer(std::vector<carte> tableau)
+void jeu::distribuer(vector<carte> tableau,int l)
 {
-    carte carte1("As","CO",1),carte14("As","PI",1),carte27("As","CA",1),carte40("As","TR",1);
-   zone1[0].t.push(carte14); // remplisaage de la zone1 par des As
+    carte carte1("AS","CO",1),carte14("AS","TR",1),carte27("AS","CA",1),carte40("AS","PI",1);
+   zone1[0].t.push(carte14);
    zone1[1].t.push(carte1);
    zone1[2].t.push(carte40);
    zone1[3].t.push(carte27);
-
-   int i(0),j(0),k(0),position;
-
-   while (tableau.size()!=0)
+      int i(0),j(0),k(0),position,positionS;
+   if (l!=1)
    {
-       position=rand()%tableau.size(); // générer une position aléatoire dans le tableau
-       zone2[k][j].t.push(tableau[position]); //ajouter la carte se trouvant dans cette position aux tas de la zone 2
-       tableau.erase(tableau.begin()+position); // supprimer cette carte du tableau
+       while (tableau.size()!=0)
+   {
+       position=rand()%tableau.size();
+       zone2[k][j].t.push(tableau[position]);
+       tableau.erase(tableau.begin()+position);
        i=i+1;
-       if (i==4) // nombre max que peut contenir un tas de la zone 2
+       if (i==4)
        {
            i=0;
            j=j+1;
@@ -235,7 +275,82 @@ void jeu::distribuer(std::vector<carte> tableau)
 
 
    }
-  
+   }
+   if (l==1)
+   {
+
+
+        carte carte2("2","CO",2),carte15("2","TR",2),carte28("2","CA",2),carte41("2","PI",2);
+        tableau.erase(tableau.begin()+0);
+        tableau.erase(tableau.begin()+11);
+        tableau.erase(tableau.begin()+22);
+        tableau.erase(tableau.begin()+33);
+
+        vector<carte> tab;
+        tab.push_back(carte2);
+        tab.push_back(carte15);
+        tab.push_back(carte28);
+        tab.push_back(carte41);
+        for(int m=0;m<4;m++)
+        {
+
+            position=rand()%tableau.size();
+            tab.push_back(tableau[position]);
+            if (tableau[position].getRang2()!=13)
+            {
+            tab.push_back(tableau[position+1]);
+            tableau.erase(tableau.begin()+position);
+            tableau.erase(tableau.begin()+position);
+            }
+            if (tableau[position].getRang2()==13)
+            {
+            tab.push_back(tableau[position-1]);
+            tableau.erase(tableau.begin()+position);
+            tableau.erase(tableau.begin()+position-1);
+            }
+
+        }
+       while (tableau.size()!=0)
+       {
+
+           position=rand()%tableau.size();
+           zone2[k][j].t.push(tableau[position]);
+           tableau.erase(tableau.begin()+position);
+           i=i+1;
+           if (i==3)
+              {
+                   i=0;
+                   j=j+1;
+
+              }
+           if (j==6)
+
+              {
+                   j=j-6;
+                   k=1;
+              }
+       }
+       i=0;
+       j=0;
+       k=0;
+       while (tab.size()!=0)
+       {
+
+           positionS=rand()%tab.size();
+           zone2[k][j].t.push(tab[positionS]);
+           tab.erase(tab.begin()+positionS);
+           j=j+1;
+           if (j==6)
+
+              {
+                   j=j-6;
+                   k=1;
+              }
+       }
+
+
+      }
+
 
 
 }
@@ -243,75 +358,104 @@ void jeu::distribuer(std::vector<carte> tableau)
 
 void jeu::permuterJeu()
 {
-    for (int i=0;i<2;i++)
+    if (verifPermute==1)
+        cout<<"you can not have new cards"<<endl;
+    else
     {
-        for(int j=0;j<6;j++)
+        verifPermute=1;
+        for (int i=0;i<2;i++)
         {
-            if(zone2[i][j].t.size()>=2)
-            {
-                zone2[i][j].permuter();
-            }
+          for(int j=0;j<6;j++)
+          {
+              if(zone2[i][j].t.size()>=2)
+              {
+                   zone2[i][j].permuter();
+              }
+          }
         }
     }
 }
 bool jeu::estBloque()
 {
-     bool test1= true ; // test1 pour vérifier s'il ya encore des déplacements possibles de la zone2 vers la zone1
-    bool test2=true ; // test2 pour vérifier s'il ya encore des déplacements possibles au sein de la zone2
+    bool test1= true ; // test1 pour vérifier s'il ya encore des déplacements possibles de la zone2 vers la zone1
     for (int c=0;c<4;c++)
     {
+        if (test1==false)
+                break;
         for (int i=0;i<2;i++)
         {
+            if (test1==false)
+                break;
             for (int j=0;j<6;j++)
             {
-                if ((zone1[c].t.top().comparerCarte(zone2[i][j].t.top())&&(zone1[c].t.top().getType()).compare(zone2[i][j].t.top().getType())==0))
+                if (!(zone2[i][j].t.empty()))
                 {
-                    test1=false; // il y a encore des deplacement possible de la zone 2 vers la zone 1
+                    if (zone1[c].t.top().comparerCarte(zone2[i][j].t.top()))
+                    {
+                         test1=false; // il y a encore des deplacement possible de la zone 2 vers la zone 1
+                    }
                 }
             }
         }
     }
-    int a=0; int b=0;
-    do
-    {
-    do
-    {
-        for (int i=0; i<2;i++)
+    int a(0),b(0),k,l;
 
+    if (test1==true)
 
+       {
+           for (int i=0; i<11;i++)
         {
-            for(int j=0;j<6;j++)
+            k=i;
+            if (i>5)
             {
-                if((zone2[i][j].t.top().comparerCarte(zone2[a][b].t.top())&&(zone2[i][j].t.top().getType()).compare(zone2[a][b].t.top().getType())==0))
+                k=i-6;
+                a=1;
+            }
+            if (test1==false)
+              break;
+
+
+            for(int j=i+1;j<12;j++)
+            {
+                l=j;
+                if (j>5)
+                    {
+                       l=j-6;
+                       b=1;
+                    }
+                if ((!(zone2[a][k].t.empty()))&&(!(zone2[b][l].t.empty())))
                 {
-                    test2=false;
+                    if ((zone2[a][k].t.top().comparerCarte(zone2[b][l].t.top()))||(zone2[b][l].t.top().comparerCarte(zone2[a][k].t.top())))
+                    {
+                       test1=false;
+                       break;
+                    }
                 }
             }
         }
-        b++;
-    }
-    while( b>=6);
-    a++;
-    }
-    while(a>=2);
-    return(test1 && test2);
-}
+       }
 
+    return(test1);
+}
 bool jeu::estVideZone2()
 {
     bool test=true ;
     for(int i=0;i<2;i++)
     {
+        if (test==false)
+            break;
         for(int j=0;j<6;j++)
         {
             if (!zone2[i][j].t.empty())
             {
                 test=false ;
+                break;
             }
         }
     }
     return(test);
 }
+
 int jeu::getVerifP()
 {
     return verifPermute;
@@ -319,6 +463,18 @@ int jeu::getVerifP()
 int jeu::getVerifA()
 {
     return verifAction;
+}
+int jeu::getScore()
+{
+    return score;
+}
+void jeu::ajoutScore(long int c)
+{
+    c=c/300;
+    int s(1000-c);
+    score=score+s;
+
+
 }
 
 
