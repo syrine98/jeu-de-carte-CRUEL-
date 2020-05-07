@@ -75,28 +75,45 @@ tableau.push_back(carte52);
 
 
 
-    int i,j,a,b;
+    int i,j,k,a,b;
     cout<<"do you want to start a new game? click 1 if you want"<<endl;
      cin>>i;
+
      if (i==1)
      {
 
          jeu newGame;
-         newGame.distribuer(tableau);
+         long int startTime,endTime,elapsedTime;
+         startTime=time(0);
+         do
+         {
+             cout<<"choose level, click 1 if you want the beginner, 2 for the medium, 3 for the hard"<<endl;
+             cin>>k;
+         }
+         while ((k!=1)&&(k!=2)&&(k!=3));
+
+         newGame.distribuer(tableau,k);
          newGame.afficherZone1();
          newGame.afficherZone2();
          bool test=true;
         while(test)
          {
-             if ((newGame.getVerifP()==1)&&(newGame.estBloque())) // permutation effectuée et la zone2 est bloquée
+             if (((newGame.getVerifP()==1)&&(newGame.estBloque()))||((k==3)&&(elapsedTime>7000)))
              {
                  cout<<"GAME OVER"<<endl;
-                 test=false;
+                 if (k!=3)
+                 {
+                     newGame.ajoutScore(elapsedTime);
+                 }
+                 cout<<"score:"<<newGame.getScore()<<endl;
+                 cout<<"playing time:"<<elapsedTime<<" s"<<endl;
+                 break;
+
 
              }
              cout<<"if you want to move a card click 1"<<endl<<"if you want to have new cards click 2"<<endl;
              cin>>j;
-             if (j==1) // si on veut déplacer une carte
+             if (j==1)
              {
 
 
@@ -104,13 +121,13 @@ tableau.push_back(carte52);
                      do
                    {
                    cout<<"enter the number of tas from where you want to move card"<<endl;
-                   cin>>a; // 4<= a <= 16
+                   cin>>a;
                    }
                    while ((a>16)||(a<4));
                     do
                    {
                    cout<<"enter the number of tas where you want to place card"<<endl;
-                   cin>>b; // 0<b<=16
+                   cin>>b;
                    }
                    while((b>16)||(b<0));
 
@@ -118,20 +135,31 @@ tableau.push_back(carte52);
 
 
              }
-              if (j==2) // donner des nouvelles cartes: effectuer la permutation
+              if ((j==2) && newGame.estBloque()==true)
               {
                   newGame.permuterJeu();
+
+              }
+              else if ((j==2) && newGame.estBloque()==false)
+              {
+                  cout<<"there are still possibilities"<<endl;
 
               }
 
                if (newGame.estVideZone2())
                {
                    cout<<"You won"<<endl;
+                   newGame.ajoutScore(elapsedTime);
+                   cout<<"score:"<<newGame.getScore()<<endl;
+                   cout<<"playing time:"<<elapsedTime<<" s"<<endl;
                    break;
                }
 
                newGame.afficherZone1();
                newGame.afficherZone2();
+               endTime=time(0);
+               elapsedTime=startTime-endTime;
+
 
 
 
@@ -144,6 +172,8 @@ tableau.push_back(carte52);
 
 
      }
+
+
     return 0;
 }
 
