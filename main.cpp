@@ -76,15 +76,17 @@ tableau.push_back(carte52);
 
 
     int i,j,k,a,b;
+    //the player choose to start the game 
     cout<<"do you want to start a new game? click 1 if you want"<<endl;
      cin>>i;
 
      if (i==1)
      {
 
-         jeu newGame;
+         jeu newGame;//starting the game
          long int startTime,endTime,elapsedTime;
          startTime=time(0);
+         //the player choose the level
          do
          {
              cout<<"choose level, click 1 if you want the beginner, 2 for the medium, 3 for the hard"<<endl;
@@ -92,21 +94,25 @@ tableau.push_back(carte52);
          }
          while ((k!=1)&&(k!=2)&&(k!=3));
 
-         newGame.distribuer(tableau,k);
-         newGame.afficherZone1();
+         newGame.distribuer(tableau,k);//distribute cards
+         newGame.afficherZone1();//print cards in the two areas
          newGame.afficherZone2();
          bool test=true;
         while(test)
          {
-             if (((newGame.getVerifP()==1)&&(newGame.estBloque()))||((k==3)&&(elapsedTime>1800)))
+            
+             if (((newGame.getVerifP()==1)&&(newGame.estBloque()))||((k==3)&&(elapsedTime>1800)))//the game ended if it's blocked after having new cards or passed the limited timr for level 3
              {
+                 
                  cout<<"GAME OVER"<<endl;
-                 if (k!=3)
+                 //adding points to score 
+                 if ((k!=3)||((k==3)&&(!(elapsedTime>1800))))
                  {
                      newGame.ajoutScore(elapsedTime);
                  }
-                 cout<<"score:"<<newGame.getScore()<<endl;
-                 cout<<"playing time:"<<elapsedTime<<" s"<<endl;
+                 
+                 cout<<"score:"<<newGame.getScore()<<endl;//print score
+                 cout<<"playing time:"<<elapsedTime<<" s"<<endl;//print the playing time
                  break;
 
 
@@ -131,7 +137,7 @@ tableau.push_back(carte52);
                    }
                    while((b>16)||(b<0));
 
-                   newGame.deplacer(a,b);
+                   newGame.deplacer(a,b);//moving cards from stack a to stack b if it's possible
 
 
              }
