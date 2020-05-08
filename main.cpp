@@ -98,7 +98,7 @@ tableau.push_back(carte52);
          bool test=true;
         while(test)
          {
-             if (((newGame.getVerifP()==1)&&(newGame.estBloque()))||((k==3)&&(elapsedTime>7000)))
+             if (((newGame.getVerifP()==1)&&(newGame.estBloque()))||((k==3)&&(elapsedTime>1800)))
              {
                  cout<<"GAME OVER"<<endl;
                  if (k!=3)
