@@ -36,8 +36,8 @@ void jeu::deplacer(int a ,int b)//move a cards from the top of the stack a to yh
 
       carte C= zone2[c][a].t.top();
       /*comparing cards if they have the same type and the card in the zone1 should be also higher rank with only one point
-      for example if rank of the card in zone1 is 2 the rank of the card that the player want to move  be should  3 
-      only in this condition the cards will be moved */
+      for example if rank of the card in zone1 is 2 the rank of the card that the player want to move  should be  3 .
+      Only in this condition the card will be moved */
        if (zone1[b].t.top().comparerCarte(zone2[c][a].t.top()))
         {
 
@@ -54,8 +54,8 @@ void jeu::deplacer(int a ,int b)//move a cards from the top of the stack a to yh
 
 //moving a card in zone2
     /*comparing cards if they have the same type and the rank should be inferior for the card the player want to move 
-      for example if rank of the moved card  is 5 the rank of the card on the destination stack should be 6
-      only in this condition the cards will be moved */
+      for example if rank of the moved card  is 5 the rank of the card on the destination stack should be 6.
+      Only in this condition the card will be moved */
 if (b>10)// destination stack is in the second row 
       {
           b=b-11;
