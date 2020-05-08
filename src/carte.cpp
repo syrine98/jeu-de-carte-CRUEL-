@@ -25,25 +25,25 @@ carte::carte(const carte& c)
     rang=c.rang;
     rang2=c.rang2;
 }
-string carte::getRang()
+string carte::getRang()//getter of rang
 {
     return(rang);
 }
-string carte::getType()
+string carte::getType()//getter of type
 {
     return(type);
 }
-int carte::getRang2()
+int carte::getRang2()//getter of rang2
 {
 
  return(rang2);
 
 }
-void carte::afficher()
+void carte::afficher()//print card
 {
     cout<<rang<<"-"<<type;
 }
-bool carte::comparerCarte(carte c) // true si la carte passée en paramètres est plus grande que la carte objet
+bool carte::comparerCarte(carte c) // true si la carte passÃ©e en paramÄtres est plus grande que la carte objet et a le meme type
 {
     int x=rang2+1;
     int y=type.compare(c.getType()); // pour comparer les deux types de cartes
