@@ -489,7 +489,7 @@ int jeu::getScore()//getter of score
 void jeu::ajoutScore(long int c)//updating score in the end of game 
 {
     c=c/300;
-    int s(1000-(c*100));
+    int s(3000-(c*100));
     score=score+s;
 
 
