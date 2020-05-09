@@ -108,7 +108,7 @@ tableau.push_back(carte52);
                  //adding points to score 
                  if ((k!=3)||((k==3)&&(!(elapsedTime>1800))))
                  {
-                     newGame.ajoutScore(elapsedTime);
+                     newGame.ajoutScore(elapsedTime+2500);
                  }
                  
                  cout<<"score:"<<newGame.getScore()<<endl;//print score
