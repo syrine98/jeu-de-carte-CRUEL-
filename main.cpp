@@ -164,7 +164,7 @@ tableau.push_back(carte52);
                newGame.afficherZone1();
                newGame.afficherZone2();
                endTime=time(0);
-               elapsedTime=startTime-endTime;
+               elapsedTime=endTime-startTime;
 
 
 
