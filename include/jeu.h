@@ -23,7 +23,7 @@ class jeu
         int  getVerifA();
         ~jeu();
         int  getScore();
-        void ajoutScore(long int c);
+        void ajoutScore(long int c,int k);
 
     private:
 
