@@ -17,7 +17,7 @@ jeu::jeu()
     score=0;
 }
 jeu::~jeu(){}
-void jeu::deplacer(int a ,int b)//move a cards from the top of the stack a to yhe top of the stack b
+void jeu::deplacer(int a ,int b,int k)//move a cards from the top of the stack a to yhe top of the stack b
 {
     verifAction=0;//always null when the player try to move a card 
     //updating the positions a and b to the real positions in the two static vector zone1 and zone2
@@ -90,6 +90,10 @@ if (b<11&&b>4)//destination stack is in the first row
         }
 if (verifAction==0)//the player make a bad move 
    {
+       if (k==3)
+       {
+           score-=100;
+       }
        cout<<"WARNING:Bad move"<<endl;
        cout<<"this move is not allowed"<<endl;
    }
@@ -486,10 +490,19 @@ int jeu::getScore()//getter of score
 {
     return score;
 }
-void jeu::ajoutScore(long int c)//updating score in the end of game 
+void jeu::ajoutScore(long int c,int k)//updating score in the end of game 
 {
     c=c/300;
-    int s(3000-(c*100));
+    int s;
+    if (k!=3)
+    {
+        s=4000-(c*200);
+    }
+    else
+    {
+        s=4000-(c*100);
+    }
+    
     score=score+s;
 
 
