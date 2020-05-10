@@ -108,7 +108,7 @@ tableau.push_back(carte52);
                  //adding points to score 
                  if ((k!=3)||((k==3)&&(!(elapsedTime>1800))))
                  {
-                     newGame.ajoutScore(elapsedTime+2500);
+                     newGame.ajoutScore(elapsedTime+2500,k);
                  }
                  
                  cout<<"score:"<<newGame.getScore()<<endl;//print score
@@ -137,7 +137,7 @@ tableau.push_back(carte52);
                    }
                    while((b>16)||(b<0));
 
-                   newGame.deplacer(a,b);//moving cards from stack a to stack b if it's possible
+                   newGame.deplacer(a,b,k);//moving cards from stack a to stack b if it's possible
 
 
              }
@@ -155,7 +155,7 @@ tableau.push_back(carte52);
                if (newGame.estVideZone2())
                {
                    cout<<"You won"<<endl;
-                   newGame.ajoutScore(elapsedTime);
+                   newGame.ajoutScore(elapsedTime,k);
                    cout<<"score:"<<newGame.getScore()<<endl;
                    cout<<"playing time:"<<elapsedTime<<" s"<<endl;
                    break;
