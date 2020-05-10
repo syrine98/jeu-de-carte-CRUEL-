@@ -104,7 +104,7 @@ if (verifAction==0)//the player make a bad move
 
 
 
-} // on aura besoin à une seule méthode deplacer
+}
 
 void jeu::afficherZone1()
 {
@@ -412,7 +412,7 @@ bool jeu::estBloque()
                 {
                     if (zone1[c].t.top().comparerCarte(zone2[i][j].t.top()))
                     {
-                         test1=false; // il y a encore des deplacement possible de la zone 2 vers la zone 1
+                         test1=false; // there are still posssibilities
                     }
                 }
             }
