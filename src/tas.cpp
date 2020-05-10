@@ -7,8 +7,7 @@ tas::tas()
 {
 
 }
-void tas::permuter() // la permutation des deux cartes au dessus du tas
-{
+void tas::permuter() 
     if(t.size()>1)
     {
         carte c1=t.top();
