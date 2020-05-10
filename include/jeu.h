@@ -29,8 +29,8 @@ class jeu
 
         tas zone1[4];
         tas zone2[2][6];
-        int verifPermute; // pour vérifier si la permutation a eu lieu ou non
-        int verifAction; // pour vérifier si l'action demandée est effectuée ou pas
+        int verifPermute; // to check whether the switchover has taken place or not
+        int verifAction; // to check if the requested action is performed or not
         int score ;
 
 
