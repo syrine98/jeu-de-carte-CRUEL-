@@ -11,7 +11,7 @@ using namespace std;
 
 int main()
 {
-    srand(time(0)); // pour la distribution aléatoire
+    srand(time(0)); 
     cout << "welcome in the game! " << endl;
     //initialisation de 52 cartes
     carte carte1("As","CO",1),carte2("2","CO",2),carte3("3","CO",3),carte4("4","CO",4),carte5("5","CO",5),carte6("6","CO",6),carte7("7","CO",7),carte8("8","CO",8);
@@ -22,7 +22,7 @@ int main()
     carte carte38("Dame","CA",12),carte39("Roi","CA",13),carte40("As","TR",1),carte41("2","TR",2),carte42("3","TR",3),carte43("4","TR",4),carte44("5","TR",5);
     carte carte45("6","TR",6),carte46("7","TR",7),carte47("8","TR",8),carte48("9","TR",9),carte49("10","TR",10),carte50("Valet","TR",11),carte51("Dame","TR",12),carte52("Roi","TR",13);
     vector <carte> tableau ;
- // remplissage du tableau par 48 cartes
+ // filling the vector with 48 cards
 
 tableau.push_back(carte2);
 tableau.push_back(carte3);
