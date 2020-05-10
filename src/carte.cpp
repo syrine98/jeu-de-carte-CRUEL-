@@ -43,10 +43,10 @@ void carte::afficher()//print card
 {
     cout<<rang<<"-"<<type;
 }
-bool carte::comparerCarte(carte c) // true si la carte passée en paramčtres est plus grande que la carte objet et a le meme type
+bool carte::comparerCarte(carte c) // true if the card passed in parameters is larger than the object card and has the same type
 {
     int x=rang2+1;
-    int y=type.compare(c.getType()); // pour comparer les deux types de cartes
+    int y=type.compare(c.getType()); // to compare the two types of cards
     bool test=((c.getRang2()==x)&&(y==0));
         return test;
 }
