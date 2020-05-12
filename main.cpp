@@ -13,7 +13,7 @@ int main()
 {
     srand(time(0)); 
     cout << "welcome in the game! " << endl;
-    //initialisation de 52 cartes
+    //initialization de 52 cartes
     carte carte1("As","CO",1),carte2("2","CO",2),carte3("3","CO",3),carte4("4","CO",4),carte5("5","CO",5),carte6("6","CO",6),carte7("7","CO",7),carte8("8","CO",8);
     carte carte9("9","CO",9),carte10("10","CO",10),carte11("Valet","CO",11),carte12("Dame","CO",12),carte13("Roi","CO",13),carte14("As","PI",1),carte15("2","PI",2);
     carte carte16("3","PI",3),carte17("4","PI",4),carte18("5","PI",5),carte19("6","PI",6),carte20("7","PI",7),carte21("8","PI",8),carte22("9","PI",9),carte23("10","PI",10);
