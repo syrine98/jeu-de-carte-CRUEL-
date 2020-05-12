@@ -92,7 +92,7 @@ if (verifAction==0)//the player make a bad move
    {
        if (k==3)
        {
-           score-=100;
+           score-=50;
        }
        cout<<"WARNING:Bad move"<<endl;
        cout<<"this move is not allowed"<<endl;
