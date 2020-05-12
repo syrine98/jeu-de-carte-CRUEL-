@@ -13,7 +13,7 @@ class jeu
     public:
        jeu();
         void deplacer(int a,int b,int k);
-        void distribuer( std::vector<carte> t,int k);
+        void distribuer( std::vector<carte> t,int l);
         void afficherZone1();
         void afficherZone2();
         bool estBloque();
