@@ -496,11 +496,11 @@ void jeu::ajoutScore(long int c,int k)//updating score in the end of game
     int s;
     if (k!=3)
     {
-        s=4000-(c*200);
+        s=4000-(c*100);
     }
     else
     {
-        s=4000-(c*100);
+        s=4000-(c*200);
     }
     
     score=score+s;
